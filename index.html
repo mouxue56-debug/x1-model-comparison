@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>同题三模试写</title>
+<meta name="description" content="同一份任务书让 Grok 4.7、小米 MiMo Pro 和 Flash 各写一遍视频动效代码：成品、过程数据、做法，以及这次对比不公平的地方。">
+<meta property="og:title" content="同题三模试写">
+<meta property="og:description" content="同一份任务书让 Grok 4.7、小米 MiMo Pro 和 Flash 各写一遍视频动效代码：成品、过程数据、做法，以及这次对比不公平的地方。">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://mouxue56-debug.github.io/x1-model-comparison/img/m_S05.jpg">
+<meta name="robots" content="index,follow">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* 版式：一份实验记录——结果先行（视频并排），再给数据、做法、公平性。
+   每个模型一个身份色，只用在小标签和边线上。 */
+:root{
+  --bg:#F2F5F8; --panel:#FFFFFF; --ink:#14202B; --ink2:#4B5B6A; --line:#D6DEE6;
+  --grok:#2F6FED; --pro:#D9480F; --flash:#0C8F7E; --warn:#B7791F; --warnbg:#FFF6DD;
+  --font-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F161D; --panel:#17212B; --ink:#E6EDF3; --ink2:#9FB0C0; --line:#2B3946;
+  --grok:#6E9BFF; --pro:#FF8A5C; --flash:#3FD0BC; --warn:#E3B04B; --warnbg:#2A2412; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F161D; --panel:#17212B; --ink:#E6EDF3; --ink2:#9FB0C0; --line:#2B3946;
+  --grok:#6E9BFF; --pro:#FF8A5C; --flash:#3FD0BC; --warn:#E3B04B; --warnbg:#2A2412; color-scheme:dark}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.7;padding-inline:max(16px,4vw);padding-block:28px 64px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:36px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.2;margin:0 0 10px;font-weight:700;text-wrap:balance}
+h2{font-size:clamp(20px,3vw,24px);margin:0 0 14px;font-weight:700;text-wrap:balance}
+h3{font-size:17px;margin:0 0 6px}
+p{margin:0 0 12px}
+.lede{color:var(--ink2);font-size:17px;max-width:46em}
+.meta{font-family:var(--font-mono);font-size:13px;color:var(--ink2);letter-spacing:.02em}
+section{display:grid;gap:14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+.chip{display:inline-block;font-family:var(--font-mono);font-size:12px;padding:2px 9px;border-radius:99px;border:1.5px solid currentColor;margin-right:8px;vertical-align:1px}
+.c-grok{color:var(--grok)} .c-pro{color:var(--pro)} .c-flash{color:var(--flash)}
+.scene{display:grid;gap:12px}
+.scene h3 span{font-weight:400;color:var(--ink2)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.trio{grid-template-columns:1fr}}
+figure{margin:0;display:grid;gap:6px;min-width:0}
+figure video{width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;display:block}
+figcaption{font-size:14px;color:var(--ink2)}
+figcaption b{color:var(--ink);font-weight:600}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink2);font-size:13px;letter-spacing:.03em}
+td.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.quote{border-left:3px solid var(--line);padding:2px 0 2px 14px;margin:0 0 10px;color:var(--ink)}
+.quote small{display:block;color:var(--ink2);font-size:13px;margin-top:2px}
+.q-grok{border-color:var(--grok)} .q-pro{border-color:var(--pro)} .q-flash{border-color:var(--flash)}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.cols{grid-template-columns:1fr}}
+ul{margin:0;padding-left:1.2em} li{margin:0 0 6px}
+.warn{background:var(--warnbg);border:1px solid var(--warn);border-radius:10px;padding:16px 18px}
+.warn h2{color:var(--warn);margin-bottom:8px}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;margin:6px 0 10px}
+.flow .arrow{color:var(--ink2)}
+code{font-family:var(--font-mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+pre{font-family:var(--font-mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:0;line-height:1.6}
+.foot{color:var(--ink2);font-size:13px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="meta">2026-10-15 · 一条 15 分钟口播视频的制作过程中</div>
+  <h1>同一份任务书，三个模型写同一段动效代码</h1>
+  <p class="lede">视频的结构和编排由 Claude Opus 5.5 设计，画面代码交给别的模型写。第一版代码被视频作者评为“太简单、太一般”，于是拿同一个题目让三个模型各写一遍：Cursor 里的 Grok 4.7，以及小米 Token Plan 里的 MiMo v2.6 Pro 和 Flash。下面是它们的成品、过程数据、做法，和这次对比不够公平的地方。</p>
+</header>
+
+<section>
+  <h2>先看成品</h2>
+  <p>题目是整条视频里的两个场面：<b>S05 邮件龙卷风</b>（讲者有多个网店和两个猫舍、邮件很多，agent 接上邮箱后替他汇总订单、发货、回复和扣款）和 <b>S26 按难度派模型</b>（讲者转述马斯克的说法：简单任务走小模型，困难任务走大模型，再分给 Opus 和 Suno 这类模型）。三个模型拿到的任务书逐字相同，都渲成 720P、60fps，声音是整片混音里对应的那一段（口播和背景音乐）。</p>
+
+  <div class="panel scene">
+    <h3>S05 邮件龙卷风 <span>· 15.7 秒</span></h3>
+    <div class="trio">
+      <figure><video controls playsinline preload="none" poster="img/g_S05.jpg" src="videos/g_S05.mp4"></video><figcaption><span class="chip c-grok">Grok 4.7</span><b>琥珀螺旋 + 信封公转</b></figcaption></figure>
+      <figure><video controls playsinline preload="none" poster="img/m_S05.jpg" src="videos/m_S05.mp4"></video><figcaption><span class="chip c-pro">MiMo Pro</span><b>体积光涡 + 168 封信封</b></figcaption></figure>
+      <figure><video controls playsinline preload="none" poster="img/f_S05.jpg" src="videos/f_S05.mp4"></video><figcaption><span class="chip c-flash">MiMo Flash</span><b>体积光涡 + 132 封信封</b></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="panel scene">
+    <h3>S26 按难度派模型 <span>· 20.7 秒</span></h3>
+    <div class="trio">
+      <figure><video controls playsinline preload="none" poster="img/g_S26.jpg" src="videos/g_S26.mp4"></video><figcaption><span class="chip c-grok">Grok 4.7</span><b>3D 漏斗 + 管道</b></figcaption></figure>
+      <figure><video controls playsinline preload="none" poster="img/m_S26.jpg" src="videos/m_S26.mp4"></video><figcaption><span class="chip c-pro">MiMo Pro</span><b>玻璃漏斗 + 会摆的挡板</b></figcaption></figure>
+      <figure><video controls playsinline preload="none" poster="img/f_S26.jpg" src="videos/f_S26.mp4"></video><figcaption><span class="chip c-flash">MiMo Flash</span><b>玻璃漏斗 + 三次贝塞尔管道</b></figcaption></figure>
+    </div>
+  </div>
+  <p class="foot">页面里的视频为网页重新压缩过的版本（约 3.5 Mbps）。原文件里 Pro 的 S05 有 36MB，Grok 的只有 12MB。</p>
+</section>
+
+<section>
+  <h2>视频作者怎么评价</h2>
+  <p>以下是看过三组成品后的原话，没有改写。</p>
+  <div class="quote q-pro">“做的代码是形象更好，但是龙卷风转的太快了。……漏斗那一块，小米做这个的就很好。……小米没做[邮件分类]。”<small>说的是 MiMo Pro</small></div>
+  <div class="quote q-grok">“Grok做的龙卷风转速慢，但是那个邮件什么的不够清晰。但是Grok做的还有进一步的动画，就是邮件分类。……漏斗那一块，Grok做的是3D化的，但看上去很差。”<small>说的是 Grok 4.7</small></div>
+  <div class="quote q-flash">“这个Flash的效果非常好呀，是这里面最好的。”<small>说的是 MiMo Flash</small></div>
+  <div class="quote">“各有千秋吧，大差不差。”“我觉得速度都很慢。”</div>
+</section>
+
+<section>
+  <h2>成绩单</h2>
+  <div class="panel tbl">
+    <table>
+      <thead><tr><th></th><th><span class="chip c-grok">Grok 4.7</span></th><th><span class="chip c-pro">MiMo Pro</span></th><th><span class="chip c-flash">MiMo Flash</span></th></tr></thead>
+      <tbody>
+        <tr><th>运行环境</th><td>Cursor 命令行代理（xhigh-fast）</td><td>Claude Code，换成小米端点</td><td>同 Pro，只换模型名</td></tr>
+        <tr><th>总用时</th><td class="num">约 16 分钟</td><td class="num">60 分钟</td><td class="num">52 分钟</td></tr>
+        <tr><th>对话轮数</th><td class="num">48 条助手消息</td><td class="num">133 轮</td><td class="num">137 轮</td></tr>
+        <tr><th>渲染次数</th><td class="num">约 10（3 静帧 + 约 7 片段）</td><td class="num">16（8 静帧 + 3 片段 + 5 其他）</td><td class="num">17（11 静帧 + 2 片段 + 4 其他）</td></tr>
+        <tr><th>看图次数</th><td class="num">9</td><td class="num">14</td><td class="num">9</td></tr>
+        <tr><th>改 / 写文件</th><td class="num">14 次替换，5 次新写</td><td class="num">19 次修改，6 次新写（S05 的代码文件前后被写改 13 次，S26 的 8 次）</td><td class="num">9 次修改，6 次新写（S05 的代码文件被写改 3 次，S26 的 8 次）</td></tr>
+        <tr><th>输入 token</th><td>Cursor 不回传</td><td class="num">24.0 万</td><td class="num">39.8 万</td></tr>
+        <tr><th>输出 token</th><td>Cursor 不回传</td><td class="num">12.1 万</td><td class="num">12.9 万</td></tr>
+        <tr><th>缓存读取 token</th><td>Cursor 不回传</td><td class="num">871.7 万</td><td class="num">736.7 万</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="foot">Pro 和 Flash 的数字来自 Claude Code 的会话汇总；Grok 的数字来自 Cursor 的对话转录，只能数出消息和工具调用，没有 token 统计。缓存读取是每一轮重读上下文的累计量，所以很大。小米自己怎么计额度，页面外看不到。任务书里写的限时是 45 分钟，Pro 和 Flash 都超了，Grok 没有。</p>
+</section>
+
+<section>
+  <h2>它们各自怎么做的</h2>
+  <div class="cols">
+    <div class="panel"><h3><span class="chip c-grok">Grok 4.7</span></h3>
+      <ul>
+        <li>S05：全屏 WebGL2 琥珀螺旋慢转，three.js 的 96 张信封沿螺旋公转，带拖尾，四列玻璃槽用弹簧长出来。</li>
+        <li>S26：紫色数据流着色器，玻璃漏斗、喉管、会摆的挡板，右管分叉成 Opus 和 Suno。</li>
+        <li>自己写下的不足：信封落地后叠成薄片，四个管道名同时出现会重叠。</li>
+      </ul></div>
+    <div class="panel"><h3><span class="chip c-pro">MiMo Pro</span></h3>
+      <ul>
+        <li>S05：五层常驻——体积光涡、168 封信封乘六条螺旋臂、速度拉丝、四块玻璃柱里程计、逐字标题与冲击波。</li>
+        <li>S26：右半屏是派模型机器，任务卡“下落过冲、被挡板拨开、沿管滑下”三段式，证据帖用代码画。</li>
+        <li>写了一个共用库：弹簧、冲击波环、逐字物理入场、镜头余震、确定性粒子。</li>
+      </ul></div>
+    <div class="panel"><h3><span class="chip c-flash">MiMo Flash</span></h3>
+      <ul>
+        <li>S05：同样五层常驻，132 封信封带四层拖尾子帧，透视相机随拍呼吸、爆点推近。</li>
+        <li>S26：SVG 机器，每张卡过冲的挡板，三次贝塞尔管道里常驻流动的数据包。</li>
+        <li>自己写下的取舍：体积光是二维混合近似，漏斗偏“云团”；机器缩到 60% 后管名字号偏小。</li>
+      </ul></div>
+  </div>
+</section>
+
+<section class="warn">
+  <h2>这次对比不够公平</h2>
+  <p><b>相同的部分：</b>三份任务书除了文件名前缀，逐字相同（用文本比对核实过）；Pro 和 Flash 在同一条命令、同一套允许工具下跑，只换了模型名。</p>
+  <p><b>不相同的部分：</b></p>
+  <ul>
+    <li><b>后跑的看到了先跑的。</b>任务书只禁止改已有文件，没有禁止读别人的。从会话记录看：</li>
+  </ul>
+  <div class="flow">
+    <span class="chip c-grok">Grok 先跑，没有参照</span><span class="arrow">→</span>
+    <span class="chip c-pro">Pro 开头读了 Grok 的说明和迷你时间线</span><span class="arrow">→</span>
+    <span class="chip c-flash">Flash 读了 Pro 的说明、两份迷你时间线和运行日志</span>
+  </div>
+  <ul>
+    <li>Pro 和 Flash 的 S05 都是“体积光涡 + three.js 信封螺旋臂 + 速度拉丝 + 玻璃柱里程计”的五层结构，Flash 很可能参考了 Pro 的说明；会话记录里没有 Flash 读 Pro 场面代码全文的痕迹，只看到它 grep 过 Pro 代码里的元素注册行。</li>
+    <li>Grok 跑在 Cursor 的代理里，Pro 和 Flash 跑在 Claude Code 里，两边的工具集和提示不同。</li>
+    <li>每个模型只跑了一次，场面只有两个，评价是视频作者的主观判断。</li>
+  </ul>
+  <p>所以能说的是：同一道题，三个模型都交得出像样的画面，各有长短；说不出的是“Flash 比 Pro 强”，因为 Flash 是最后一个，手里有前面两个的说明。要得到干净的对比，需要各自在互相看不到对方文件的目录里重跑。</p>
+</section>
+
+<section>
+  <h2>顺手记一个坑：怎么让 Claude Code 用小米 MiMo</h2>
+  <p>小米的端点是原生的 Anthropic 兼容接口，直接用 curl 调用没有问题。但在已登录 Claude 订阅的机器上，用 Claude Code 指向它，会一直返回 401。原因是 Claude Code 把本机的订阅登录凭据一起发给了小米。给它一个空的配置目录就通了：</p>
+<pre>CLAUDE_CONFIG_DIR=/path/to/empty-dir \
+ANTHROPIC_BASE_URL=https://token-plan-cn.xiaomimimo.com/anthropic \
+ANTHROPIC_API_KEY=&lt;你的 Token Plan 密钥&gt; \
+ANTHROPIC_MODEL=mimo-v2.6-pro \
+claude -p "任务描述" --model mimo-v2.6-pro</pre>
+  <p class="foot">另一个小坑：给 <code>--allowedTools</code> 传多个值时，任务描述要写在它前面，否则会被当成工具名吞掉。</p>
+</section>
+
+<section>
+  <h2>接下来</h2>
+  <p>视频作者同意让 Opus 写“动效分镜表”：每一场每一拍什么动、怎么动、对哪个词、配什么声音，执行的模型照表写代码。两版试写里的差别，转速、邮件是否清晰、有没有分类动画、漏斗要不要 3D，都会在表里写死，不再让执行的模型各自猜。表已经写完，下一步是先做共用的角色和舞台板，让视频作者看过样张再铺开。</p>
+  <p class="foot">数据来源：各模型的会话转录、Claude Code 的会话汇总、每个模型交的说明文件。统计由制作视频的 Claude 会话汇总。</p>
+</section>
+
+</div>
+
+</body>
+</html>
